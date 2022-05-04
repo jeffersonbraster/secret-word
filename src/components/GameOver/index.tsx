@@ -1,9 +1,14 @@
 import styles from "./styles.module.scss";
 
-const GameOver = () => {
+type GameOverProps = {
+  retryGame: () => void;
+};
+
+const GameOver = ({ retryGame }: GameOverProps) => {
   return (
     <div>
       <h1>gameover</h1>
+      <button onClick={retryGame}>Voltar ao inicio</button>
     </div>
   );
 };
