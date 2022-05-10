@@ -2,22 +2,47 @@ import styles from "./styles.module.scss";
 
 type GameProps = {
   verifyLetter: () => void;
+  picketWord: string;
+  pickedCategory: string;
+  letters: string[];
+  guessedLetters: string[];
+  wrongLetters: string[];
+  guesses: number;
+  score: number;
 };
 
-const Game = ({ verifyLetter }: GameProps) => {
+const Game = ({
+  verifyLetter,
+  pickedCategory,
+  guessedLetters,
+  guesses,
+  letters,
+  picketWord,
+  score,
+  wrongLetters,
+}: GameProps) => {
   return (
     <div className={styles.container}>
       <p className={styles.points}>
-        <span>Pontuação: 000</span>
+        <span>Pontuação: {score}</span>
       </p>
 
-      <h1>Dica da palavra:</h1>
+      <h1>
+        Dica da palavra: <h2>{pickedCategory}</h2>
+      </h1>
 
-      <h2>Carro</h2>
+      <p>Você ainda tem {guesses} tentativas</p>
 
       <div className={styles.wordContainer}>
-        <span className={styles.letter}>A</span>
-        <span className={styles.blankSquare}></span>
+        {letters.map((l, i) =>
+          guessedLetters.includes(l) ? (
+            <span key={i} className={styles.letter}>
+              {l}
+            </span>
+          ) : (
+            <span key={i} className={styles.blankSquare}></span>
+          )
+        )}
       </div>
 
       <div className={styles.letterContainer}>
@@ -31,8 +56,9 @@ const Game = ({ verifyLetter }: GameProps) => {
 
       <div className={styles.wrongLettersContainer}>
         <p>Letras já utilizadas: </p>
-        <span>a,</span>
-        <span>b</span>
+        {wrongLetters.map((l, i) => (
+          <span key={i}>{l}</span>
+        ))}
       </div>
     </div>
   );

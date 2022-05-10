@@ -1,7 +1,7 @@
 const data = {
-  carro: ["Motor", "Pneu", "Bateria"],
-  computador: ["CPU", "Placa de vídeo", "Memoria"],
-  corpo: ["Perna", "Cabeça", "Pe", "Peso"],
+  carro: ["motor", "pneu", "bateria"],
+  computador: ["cpu", "gabinete", "memoria"],
+  corpo: ["perna", "cabeça", "pe", "unhas"],
 };
 
 export default data;
