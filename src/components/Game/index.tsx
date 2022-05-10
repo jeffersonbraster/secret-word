@@ -1,7 +1,8 @@
+import { FormEvent, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 
 type GameProps = {
-  verifyLetter: () => void;
+  verifyLetter: (letter: string) => void;
   picketWord: string;
   pickedCategory: string;
   letters: string[];
@@ -21,6 +22,19 @@ const Game = ({
   score,
   wrongLetters,
 }: GameProps) => {
+  const [letter, setLetter] = useState("");
+
+  const letterInputRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    verifyLetter(letter);
+    setLetter("");
+
+    letterInputRef.current?.focus();
+  };
+
   return (
     <div className={styles.container}>
       <p className={styles.points}>
@@ -47,8 +61,16 @@ const Game = ({
 
       <div className={styles.letterContainer}>
         <p>Advinhe uma letra da palavra: </p>
-        <form>
-          <input type="text" name="letter" maxLength={1} required />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="letter"
+            maxLength={1}
+            required
+            value={letter}
+            ref={letterInputRef}
+            onChange={(e) => setLetter(e.target.value)}
+          />
 
           <button type="submit">Jogar</button>
         </form>

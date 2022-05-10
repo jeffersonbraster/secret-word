@@ -48,8 +48,8 @@ function App() {
     setGameStage(stages[1].name);
   };
 
-  const verifyLetter = () => {
-    setGameStage(stages[2].name);
+  const verifyLetter = (letter: string) => {
+    // setGameStage(stages[2].name);
   };
 
   const retryGame = () => {
